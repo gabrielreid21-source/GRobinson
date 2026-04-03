@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gabrielle E.A. Robinson — CV</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --pear-sorbet: #E8DFB1;
+  --carnelian: #C07858;
+  --icy-morn: #B5D5D1;
+  --aurora: #EDDD59;
+  --baked-apple: #A3434A;
+  --dark: #1a1714;
+  --dark-warm: #2a2520;
+  --cream: #F5F0E1;
+  --cream-light: #FAF7EE;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--carnelian) var(--cream);
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream-light);
+  color: var(--dark);
+  overflow-x: hidden;
+}
+
+/* ===== NAVIGATION ===== */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.4s ease;
+  background: transparent;
+}
+
+nav.scrolled {
+  background: rgba(245, 240, 225, 0.92);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 2px 30px rgba(0,0,0,0.06);
+}
+
+nav .logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--dark);
+  letter-spacing: 0.02em;
+}
+
+nav .nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+nav .nav-links a {
+  text-decoration: none;
+  color: var(--dark);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  position: relative;
+  padding-bottom: 3px;
+  transition: color 0.3s;
+}
+
+nav .nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--baked-apple);
+  transition: width 0.3s ease;
+}
+
+nav .nav-links a:hover::after,
+nav .nav-links a.active::after {
+  width: 100%;
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.menu-toggle span {
+  width: 24px;
+  height: 2px;
+  background: var(--dark);
+  transition: all 0.3s;
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--cream);
+}
+
+.hero-bg-shapes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero-bg-shapes .shape {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.15;
+  filter: blur(80px);
+  animation: floatShape 20s ease-in-out infinite;
+}
+
+.hero-bg-shapes .shape:nth-child(1) {
+  width: 500px; height: 500px;
+  background: var(--carnelian);
+  top: -10%; right: -5%;
+  animation-delay: 0s;
+}
+
+.hero-bg-shapes .shape:nth-child(2) {
+  width: 400px; height: 400px;
+  background: var(--icy-morn);
+  bottom: -10%; left: -5%;
+  animation-delay: -7s;
+}
+
+.hero-bg-shapes .shape:nth-child(3) {
+  width: 300px; height: 300px;
+  background: var(--aurora);
+  top: 40%; left: 30%;
+  animation-delay: -14s;
+}
+
+@keyframes floatShape {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -20px) scale(1.05); }
+  66% { transform: translate(-20px, 15px) scale(0.95); }
+}
+
+.hero-content {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
+}
+
+.hero-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--carnelian);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.3s;
+}
+
+.hero-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 7vw, 6rem);
+  font-weight: 700;
+  line-height: 1.05;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.6s;
+}
+
+.hero-name .highlight {
+  color: var(--baked-apple);
+  font-style: italic;
+}
+
+.hero-tagline {
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: var(--dark-warm);
+  max-width: 500px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.7;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.9s;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 2.2rem;
+  background: var(--baked-apple);
+  color: white;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 1.2s;
+  cursor: pointer;
+  border: none;
+}
+
+.hero-cta:hover {
+  background: var(--carnelian);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(163, 67, 74, 0.3);
+}
+
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 1.5s;
+}
+
+.hero-scroll-hint span {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--carnelian);
+}
+
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: var(--carnelian);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { transform: scaleY(1); opacity: 1; }
+  50% { transform: scaleY(0.3); opacity: 0.4; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== SECTIONS ===== */
+section {
+  padding: 6rem 2rem;
+  position: relative;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--carnelian);
+  margin-bottom: 0.8rem;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* ===== ABOUT ===== */
+.about-section {
+  background: var(--cream-light);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+.stat-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--baked-apple);
+}
+
+.stat-label {
+  font-size: 0.78rem;
+  color: #777;
+  margin-top: 0.3rem;
+  font-weight: 500;
+}
+
+.about-text p {
+  font-size: 1.02rem;
+  line-height: 1.85;
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+.about-text .lead {
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--dark);
+  line-height: 1.8;
+}
+
+.location-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--icy-morn);
+  border-radius: 50px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--dark);
+  margin-top: 1rem;
+}
+
+/* ===== EXPERIENCE ===== */
+.experience-section {
+  background: var(--dark);
+  color: white;
+}
+
+.experience-section .section-label {
+  color: var(--aurora);
+}
+
+.experience-section .section-title {
+  color: white;
+}
+
+.exp-timeline {
+  position: relative;
+  padding-left: 3rem;
+}
+
+.exp-timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--carnelian), var(--baked-apple), var(--aurora));
+}
+
+.exp-card {
+  position: relative;
+  margin-bottom: 2.5rem;
+  padding: 2rem;
+  background: var(--dark-warm);
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.exp-card::before {
+  content: '';
+  position: absolute;
+  left: -3rem;
+  top: 2.3rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--carnelian);
+  border: 3px solid var(--dark);
+  transition: all 0.3s;
+  transform: translateX(-5px);
+}
+
+.exp-card:hover {
+  border-color: rgba(255,255,255,0.12);
+  transform: translateX(6px);
+}
+
+.exp-card:hover::before {
+  background: var(--aurora);
+  transform: translateX(-5px) scale(1.3);
+}
+
+.exp-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.8rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.exp-role {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.exp-date {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--aurora);
+  letter-spacing: 0.05em;
+  padding: 0.3rem 0.8rem;
+  background: rgba(237, 221, 89, 0.1);
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.exp-company {
+  font-size: 0.9rem;
+  color: var(--carnelian);
+  font-weight: 500;
+  margin-bottom: 0.8rem;
+}
+
+.exp-details {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, opacity 0.4s ease;
+  opacity: 0;
+}
+
+.exp-card.expanded .exp-details {
+  max-height: 600px;
+  opacity: 1;
+}
+
+.exp-details ul {
+  list-style: none;
+  padding-top: 0.8rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.exp-details li {
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.7);
+  padding: 0.4rem 0 0.4rem 1.2rem;
+  position: relative;
+}
+
+.exp-details li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--carnelian);
+}
+
+.exp-toggle {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--icy-morn);
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.exp-toggle .arrow {
+  transition: transform 0.3s;
+  display: inline-block;
+}
+
+.exp-card.expanded .exp-toggle .arrow {
+  transform: rotate(90deg);
+}
+
+/* ===== EDUCATION ===== */
+.education-section {
+  background: var(--cream);
+}
+
+.edu-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.edu-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  cursor: default;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+}
+
+.edu-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  transition: height 0.4s ease;
+}
+
+.edu-card:nth-child(1)::before { background: var(--baked-apple); }
+.edu-card:nth-child(2)::before { background: var(--carnelian); }
+
+.edu-card:hover::before { height: 6px; }
+
+.edu-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+}
+
+.edu-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 1.2rem;
+}
+
+.edu-card:nth-child(1) .edu-icon { background: rgba(163,67,74,0.1); }
+.edu-card:nth-child(2) .edu-icon { background: rgba(192,120,88,0.1); }
+
+.edu-degree {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.edu-school {
+  font-size: 0.88rem;
+  color: var(--carnelian);
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+
+.edu-field {
+  font-size: 0.82rem;
+  color: #888;
+}
+
+.edu-year {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--baked-apple);
+  margin-top: 1rem;
+  padding: 0.3rem 0.8rem;
+  background: rgba(163,67,74,0.06);
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.edu-subjects {
+  margin-top: 1.2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.edu-subjects-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #999;
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+}
+
+.edu-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.edu-tag {
+  font-size: 0.72rem;
+  padding: 0.25rem 0.7rem;
+  background: var(--cream);
+  border-radius: 20px;
+  color: #555;
+  font-weight: 500;
+}
+
+/* ===== SKILLS ===== */
+.skills-section {
+  background: var(--cream-light);
+}
+
+.skills-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.skills-col h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.skills-col h3 .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.hard-skills .dot { background: var(--baked-apple); }
+.soft-skills .dot { background: var(--carnelian); }
+
+.skill-item {
+  margin-bottom: 1.2rem;
+}
+
+.skill-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.skill-name {
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+.skill-level {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--carnelian);
+}
+
+.skill-bar {
+  height: 6px;
+  background: rgba(0,0,0,0.06);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.skill-fill {
+  height: 100%;
+  border-radius: 10px;
+  width: 0;
+  transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hard-skills .skill-fill {
+  background: linear-gradient(90deg, var(--baked-apple), var(--carnelian));
+}
+
+.soft-skills .skill-fill {
+  background: linear-gradient(90deg, var(--carnelian), var(--aurora));
+}
+
+/* Interactive skill tags */
+.soft-skill-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.soft-tag {
+  padding: 0.7rem 1.4rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 2px solid;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.soft-tag::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s;
+  border-radius: inherit;
+}
+
+.soft-tag:nth-child(1) { border-color: var(--baked-apple); color: var(--baked-apple); }
+.soft-tag:nth-child(2) { border-color: var(--carnelian); color: var(--carnelian); }
+.soft-tag:nth-child(3) { border-color: var(--icy-morn); color: #5a9e9e; }
+.soft-tag:nth-child(4) { border-color: var(--aurora); color: #b5a530; }
+.soft-tag:nth-child(5) { border-color: var(--baked-apple); color: var(--baked-apple); }
+.soft-tag:nth-child(6) { border-color: var(--carnelian); color: var(--carnelian); }
+
+.soft-tag:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.soft-tag:nth-child(1):hover { background: var(--baked-apple); color: white; }
+.soft-tag:nth-child(2):hover { background: var(--carnelian); color: white; }
+.soft-tag:nth-child(3):hover { background: var(--icy-morn); color: var(--dark); }
+.soft-tag:nth-child(4):hover { background: var(--aurora); color: var(--dark); }
+.soft-tag:nth-child(5):hover { background: var(--baked-apple); color: white; }
+.soft-tag:nth-child(6):hover { background: var(--carnelian); color: white; }
+
+/* ===== ORGANIZATIONS & CERTS ===== */
+.org-cert-section {
+  background: var(--cream);
+}
+
+.org-cert-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.org-cert-col h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+}
+
+.org-item, .cert-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem;
+  background: white;
+  border-radius: 14px;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+  cursor: default;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+}
+
+.org-item:hover, .cert-item:hover {
+  transform: translateX(8px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
+
+.org-icon, .cert-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.org-item:nth-child(1) .org-icon { background: rgba(163,67,74,0.1); }
+.org-item:nth-child(2) .org-icon { background: rgba(181,213,209,0.4); }
+.org-item:nth-child(3) .org-icon { background: rgba(237,221,89,0.2); }
+
+.cert-item:nth-child(1) .cert-icon { background: rgba(192,120,88,0.15); }
+.cert-item:nth-child(2) .cert-icon { background: rgba(163,67,74,0.1); }
+
+.org-name, .cert-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.org-desc, .cert-desc {
+  font-size: 0.76rem;
+  color: #888;
+  margin-top: 0.2rem;
+}
+
+/* ===== CONTACT ===== */
+.contact-section {
+  background: var(--dark);
+  color: white;
+  text-align: center;
+  padding: 5rem 2rem;
+}
+
+.contact-section .section-label { color: var(--aurora); }
+.contact-section .section-title { color: white; margin-bottom: 1.5rem; }
+
+.contact-subtitle {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.6);
+  max-width: 450px;
+  margin: 0 auto 3rem;
+  line-height: 1.7;
+}
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem 1.8rem;
+  background: var(--dark-warm);
+  border-radius: 14px;
+  text-decoration: none;
+  color: white;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.contact-card:hover {
+  border-color: var(--carnelian);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+.contact-card-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.contact-card:nth-child(1) .contact-card-icon { background: rgba(163,67,74,0.2); }
+.contact-card:nth-child(2) .contact-card-icon { background: rgba(181,213,209,0.2); }
+
+.contact-card-text {
+  text-align: left;
+}
+
+.contact-card-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 0.15rem;
+}
+
+.contact-card-value {
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--dark);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 2rem;
+  text-align: center;
+}
+
+footer p {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.05em;
+}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  nav .nav-links { display: none; }
+  nav .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--cream);
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    z-index: 999;
+  }
+  nav .nav-links.open a { font-size: 1.2rem; }
+  .menu-toggle { display: flex; }
+
+  .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .edu-cards { grid-template-columns: 1fr; }
+  .skills-container { grid-template-columns: 1fr; gap: 2rem; }
+  .org-cert-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+  section { padding: 4rem 1.5rem; }
+  .exp-timeline { padding-left: 2rem; }
+  .exp-card::before { left: -2rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav id="navbar">
+  <div class="logo">G.R.</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#more">More</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg-shapes">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-label">Psychology · Sales · CRM</p>
+    <h1 class="hero-name">Gabrielle<br><span class="highlight">Robinson</span></h1>
+    <p class="hero-tagline">Behavioural insights meet business strategy. Driving engagement, building relationships, and exceeding objectives.</p>
+    <a href="#contact" class="hero-cta">Get in Touch ↓</a>
+  </div>
+  <div class="hero-scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-label">01 — Introduction</p>
+      <h2 class="section-title">About Gabrielle</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p class="lead">Psychology graduate with strong customer relationship management and sales expertise. Proven ability to apply behavioural insights to enhance client experience, drive engagement, and exceed business objectives.</p>
+        <p>Skilled in communication, active listening, conflict resolution, and building high-performance teams. Passionate about bridging the gap between human understanding and strategic business growth.</p>
+        <div class="location-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Halifax, Nova Scotia
+        </div>
+      </div>
+      <div class="about-stats reveal" style="transition-delay: 0.2s;">
+        <div class="stat-card" id="stat1">
+          <div class="stat-number" data-target="2">0</div>
+          <div class="stat-label">Degrees</div>
+        </div>
+        <div class="stat-card" id="stat2">
+          <div class="stat-number" data-target="4">0</div>
+          <div class="stat-label">Roles Held</div>
+        </div>
+        <div class="stat-card" id="stat3">
+          <div class="stat-number" data-target="5">0</div>
+          <div class="stat-label">Technical Skills</div>
+        </div>
+        <div class="stat-card" id="stat4">
+          <div class="stat-number" data-target="2">0</div>
+          <div class="stat-label">Certifications</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience-section" id="experience">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-label">02 — Career</p>
+      <h2 class="section-title">Work Experience</h2>
+    </div>
+    <div class="exp-timeline">
+
+      <div class="exp-card reveal" onclick="toggleExp(this)">
+        <div class="exp-card-header">
+          <div class="exp-role">Beauty Advisor & Sales Rep</div>
+          <span class="exp-date">2025 — Present</span>
+        </div>
+        <div class="exp-company">Sephora, Halifax Shopping Centre</div>
+        <div class="exp-toggle"><span class="arrow">→</span> View details</div>
+        <div class="exp-details">
+          <ul>
+            <li>Delivered personalized client consultations with tailored skincare, makeup, and fragrance recommendations</li>
+            <li>Provided product demonstrations to increase understanding of efficacy and benefits</li>
+            <li>Built client loyalty programs to encourage repeat business and positive word-of-mouth</li>
+            <li>Maintained knowledge of emerging innovations and industry trends to build credibility</li>
+            <li>Managed store operations including inventory, merchandising, and visual displays</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-card reveal" onclick="toggleExp(this)">
+        <div class="exp-card-header">
+          <div class="exp-role">Social Media Manager & Sales</div>
+          <span class="exp-date">2023 — 2025</span>
+        </div>
+        <div class="exp-company">Telus Mobile, Mic Mac Mall & Dartmouth Crossing</div>
+        <div class="exp-toggle"><span class="arrow">→</span> View details</div>
+        <div class="exp-details">
+          <ul>
+            <li>Handled transactions accurately and met compliance targets through customer-focused selling</li>
+            <li>Negotiated terms and pricing while balancing customer satisfaction and profitability</li>
+            <li>Resolved complex issues with empathy and aligned to company standards</li>
+            <li>Strengthened social media and online engagement metrics through strategic content</li>
+            <li>Promoted Google Generation initiatives and provided constructive feedback for team improvement</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-card reveal" onclick="toggleExp(this)">
+        <div class="exp-card-header">
+          <div class="exp-role">Sales Associate</div>
+          <span class="exp-date">Previous</span>
+        </div>
+        <div class="exp-company">Dynamite</div>
+        <div class="exp-toggle"><span class="arrow">→</span> View details</div>
+        <div class="exp-details">
+          <ul>
+            <li>Provided styling consultations and personalized product recommendations</li>
+            <li>Contributed to visual merchandising and in-store promotional displays</li>
+            <li>Maintained high service standards in a fast-paced retail environment</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-card reveal" onclick="toggleExp(this)">
+        <div class="exp-card-header">
+          <div class="exp-role">Residence Assistant</div>
+          <span class="exp-date">University Term</span>
+        </div>
+        <div class="exp-company">Saint Mary's University</div>
+        <div class="exp-toggle"><span class="arrow">→</span> View details</div>
+        <div class="exp-details">
+          <ul>
+            <li>Provided academic and personal guidance using problem-solving expertise</li>
+            <li>Applied environmental psychology and sensitivity to complex situations</li>
+            <li>Managed high-volume interactions (50+ daily) with empathy and professionalism</li>
+            <li>Collaborated across teams and contributed to community-building initiatives</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="education-section" id="education">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-label">03 — Education</p>
+      <h2 class="section-title">Academic Background</h2>
+    </div>
+    <div class="edu-cards">
+      <div class="edu-card reveal">
+        <div class="edu-icon">🎓</div>
+        <div class="edu-degree">Bachelor of Science</div>
+        <div class="edu-school">Saint Mary's University, Halifax</div>
+        <div class="edu-field">Psychology</div>
+        <span class="edu-year">Completed</span>
+      </div>
+      <div class="edu-card reveal" style="transition-delay: 0.15s;">
+        <div class="edu-icon">📐</div>
+        <div class="edu-degree">Associate of Science (CAPE)</div>
+        <div class="edu-school">Holy Childhood High, Kingston, Jamaica</div>
+        <div class="edu-field">Natural Science</div>
+        <span class="edu-year">Graduated May 2019</span>
+        <div class="edu-subjects">
+          <div class="edu-subjects-title">CAPE Subjects</div>
+          <div class="edu-tags">
+            <span class="edu-tag">Biology (Units 1 & 2)</span>
+            <span class="edu-tag">Chemistry</span>
+            <span class="edu-tag">Pure Mathematics</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-label">04 — Capabilities</p>
+      <h2 class="section-title">Skills & Expertise</h2>
+    </div>
+    <div class="skills-container">
+      <div class="skills-col hard-skills reveal">
+        <h3><span class="dot"></span> Technical Skills</h3>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">Salesforce</span><span class="skill-level">Advanced</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">Microsoft Office Suite</span><span class="skill-level">Advanced</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="92"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">Google Workspace</span><span class="skill-level">Advanced</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="88"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">Telus QSM</span><span class="skill-level">Proficient</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">SPSS</span><span class="skill-level">Proficient</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="75"></div></div>
+        </div>
+      </div>
+      <div class="skills-col soft-skills reveal" style="transition-delay: 0.15s;">
+        <h3><span class="dot"></span> Interpersonal Skills</h3>
+        <div class="soft-skill-cloud">
+          <span class="soft-tag" data-tip="Effective verbal & written">Communication</span>
+          <span class="soft-tag" data-tip="De-escalation & resolution">Conflict Resolution</span>
+          <span class="soft-tag" data-tip="Long-term relationship building">Client Relations</span>
+          <span class="soft-tag" data-tip="Empathy & active listening">Interpersonal Skills</span>
+          <span class="soft-tag" data-tip="Consultative & strategic">Sales</span>
+          <span class="soft-tag" data-tip="Win-win outcomes">Negotiation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORGANIZATIONS & CERTIFICATIONS -->
+<section class="org-cert-section" id="more">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-label">05 — Beyond Work</p>
+      <h2 class="section-title">Organizations & Certifications</h2>
+    </div>
+    <div class="org-cert-grid">
+      <div class="org-cert-col reveal">
+        <h3>Organizations</h3>
+        <div class="org-item">
+          <div class="org-icon">🎤</div>
+          <div>
+            <div class="org-name">Speech & Debate</div>
+            <div class="org-desc">High School — Public speaking & argumentation</div>
+          </div>
+        </div>
+        <div class="org-item">
+          <div class="org-icon">🌈</div>
+          <div>
+            <div class="org-name">University Rainbeau Committee</div>
+            <div class="org-desc">Inclusion, diversity & community advocacy</div>
+          </div>
+        </div>
+        <div class="org-item">
+          <div class="org-icon">📱</div>
+          <div>
+            <div class="org-name">Google Pixel Ambassador</div>
+            <div class="org-desc">Tech advocacy & product evangelism</div>
+          </div>
+        </div>
+      </div>
+      <div class="org-cert-col reveal" style="transition-delay: 0.15s;">
+        <h3>Certifications</h3>
+        <div class="cert-item">
+          <div class="cert-icon">📊</div>
+          <div>
+            <div class="cert-name">ZOHO CRM</div>
+            <div class="cert-desc">Customer relationship management platform</div>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon">🛡️</div>
+          <div>
+            <div class="cert-name">Nova Scotia WHMIS</div>
+            <div class="cert-desc">Workplace hazardous materials safety</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-label">06 — Connect</p>
+      <h2 class="section-title">Let's Work Together</h2>
+    </div>
+    <p class="contact-subtitle reveal">Open to opportunities in sales, client relations, CRM, and roles where psychology meets business strategy.</p>
+    <div class="contact-links reveal" style="transition-delay: 0.15s;">
+      <a href="tel:7828823766" class="contact-card">
+        <div class="contact-card-icon">📞</div>
+        <div class="contact-card-text">
+          <div class="contact-card-label">Phone</div>
+          <div class="contact-card-value">(782) 882-3766</div>
+        </div>
+      </a>
+      <a href="mailto:R101@gmail.com" class="contact-card">
+        <div class="contact-card-icon">✉️</div>
+        <div class="contact-card-text">
+          <div class="contact-card-label">Email</div>
+          <div class="contact-card-value">R101@gmail.com</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Gabrielle E.A. Robinson — Halifax, NS</p>
+</footer>
+
+<script>
+// Mobile menu
+function toggleMenu() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+// Close mobile menu on link click
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.getElementById('navLinks').classList.remove('open');
+  });
+});
+
+// Navbar scroll effect
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Expand experience cards
+function toggleExp(card) {
+  const wasExpanded = card.classList.contains('expanded');
+  document.querySelectorAll('.exp-card').forEach(c => c.classList.remove('expanded'));
+  if (!wasExpanded) card.classList.add('expanded');
+}
+
+// Scroll reveal
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+revealElements.forEach(el => revealObserver.observe(el));
+
+// Counter animation
+function animateCounters() {
+  document.querySelectorAll('.stat-number').forEach(counter => {
+    const target = +counter.getAttribute('data-target');
+    const duration = 1500;
+    const step = target / (duration / 16);
+    let current = 0;
+    const timer = setInterval(() => {
+      current += step;
+      if (current >= target) {
+        counter.textContent = target;
+        clearInterval(timer);
+      } else {
+        counter.textContent = Math.floor(current);
+      }
+    }, 16);
+  });
+}
+
+// Trigger counters on scroll
+const statsSection = document.querySelector('.about-stats');
+let countersDone = false;
+const statsObserver = new IntersectionObserver((entries) => {
+  if (entries[0].isIntersecting && !countersDone) {
+    countersDone = true;
+    animateCounters();
+  }
+}, { threshold: 0.5 });
+if (statsSection) statsObserver.observe(statsSection);
+
+// Skill bars animation
+const skillBars = document.querySelectorAll('.skill-fill');
+const skillObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const width = entry.target.getAttribute('data-width');
+      entry.target.style.width = width + '%';
+      skillObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+skillBars.forEach(bar => skillObserver.observe(bar));
+
+// Active nav highlighting
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const top = section.offsetTop - 100;
+    if (scrollY >= top) current = section.getAttribute('id');
+  });
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+  });
+});
+
+// Soft tag tooltip on click
+document.querySelectorAll('.soft-tag').forEach(tag => {
+  tag.addEventListener('click', function() {
+    const tip = this.getAttribute('data-tip');
+    const existing = this.querySelector('.tip-popup');
+    document.querySelectorAll('.tip-popup').forEach(p => p.remove());
+    if (!existing) {
+      const popup = document.createElement('div');
+      popup.className = 'tip-popup';
+      popup.textContent = tip;
+      popup.style.cssText = `
+        position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+        background: var(--dark); color: white; padding: 0.4rem 0.8rem; border-radius: 8px;
+        font-size: 0.72rem; white-space: nowrap; z-index: 10; pointer-events: none;
+        animation: fadeUp 0.3s ease forwards;
+      `;
+      this.style.position = 'relative';
+      this.appendChild(popup);
+      setTimeout(() => popup.remove(), 2500);
+    }
+  });
+});
+</script>
+</body>
+</html>
